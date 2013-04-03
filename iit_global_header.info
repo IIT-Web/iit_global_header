@@ -1,5 +1,5 @@
 name = IIT Global Header
-description = Provides IIT Universal Global Header for subsites.
+description = Provides an IIT Global Header block for use in IIT sites.
 
 core = 7.x
 package = Illinois Institute of Technology

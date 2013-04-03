@@ -18,7 +18,7 @@
 function iit_global_header_help($path, $arg) {
   switch ($path) {
     case 'admin/help#iit_global_header':
-      return '<p>' . t('Pulls the IIT Global Header from the web.iit.edu domain and creates a block for display in the global header region.') . '</p>';
+      return '<p>' . t('Provides an IIT Global Header block for use in IIT sites. This block pulls info from a menu service located in the main IIT install. The URL of the menu service and other options can be set in the configuration page.') . '</p>';
       break;
   }
 }
@@ -44,7 +44,7 @@ function iit_global_header_block_view($delta = '') {
   switch ($delta) {
     case 'iit_global_header':
       $block['subject'] = t('IIT Global Header');
-      $block['content'] = t('<h1>header not implemented yet!</h1>');
+      $block['content'] = t('<h1>Header not implemented yet!</h1>');
       break;
   }
 
