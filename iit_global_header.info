@@ -1,0 +1,9 @@
+name = IIT Global Header
+description = Provides IIT Universal Global Header for subsites.
+
+core = 7.x
+package = Illinois Institute of Technology
+
+version = 7.x-0.x-dev
+
+files[] = iit_global_header.module
