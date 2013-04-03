@@ -22,3 +22,31 @@ function iit_global_header_help($path, $arg) {
       break;
   }
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function iit_global_header_block_info() {
+  $blocks['iit_global_header'] = array(
+    'info' => t('IIT Global Header'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ * 
+ * Prepares the contents of the block.
+ */
+function iit_global_header_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'iit_global_header':
+      $block['subject'] = t('IIT Global Header');
+      $block['content'] = t('<h1>header not implemented yet!</h1>');
+      break;
+  }
+
+  return $block;
+}
