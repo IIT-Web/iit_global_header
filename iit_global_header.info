@@ -3,6 +3,7 @@ description = Provides an IIT Global Header block for use in IIT sites.
 
 core = 7.x
 package = Illinois Institute of Technology
+configure = admin/config/content/iit_global_header
 
 version = 7.x-0.x-dev
 

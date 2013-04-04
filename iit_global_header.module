@@ -2,8 +2,11 @@
 
 /**
 * @file
-* Provides IIT Global Header
+* Provides IIT Global Header block
 */
+
+define('IIT_GH_PRIMARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/test/menu/menu-iit-global-menu.json');
+define('IIT_GH_SECONDARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/test/menu/menu-iit-global-secondary-menu.json');
 
 /**
  * Implements hook_help.
@@ -21,6 +24,65 @@ function iit_global_header_help($path, $arg) {
       return '<p>' . t('Provides an IIT Global Header block for use in IIT sites. This block pulls info from a menu service located in the main IIT install. The URL of the menu service and other options can be set in the configuration page.') . '</p>';
       break;
   }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function iit_global_header_permission() {
+  return array(
+    'administer iit_global_header' => array(
+      'title' => t('Administer IIT Global Header module'),
+      'description' => t('Perform administration tasks and configure IIT Global Header module'),
+      'restrict access' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function iit_global_header_menu() {
+  $items = array();
+
+  $items['admin/config/content/iit_global_header'] = array(
+    'title' => 'IIT Global Header',
+    'description' => 'Configuration for the IIT Global Header module.',
+    'type' => MENU_NORMAL_ITEM,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('iit_global_header_config_form'),
+    'access arguments' => array('administer iit_global_header'),
+  );
+
+  return $items;
+}
+
+/**
+ * Form builder; Create and display the IIT Global Header configuration settings form.
+ */
+function iit_global_header_config_form($form, &$form_state) {
+  $form = array();
+
+  // Text field for URL path to menu service
+  $form['iit_global_header_primary_menu_service_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('IIT Global Header Primary Menu JSON Service URL'),
+    '#size' => 100,
+    '#description' => t('Full URL to server that provides the primary menu JSON data. This URL should be provided by the Drupal Services module and the Services Menu module.'),
+    '#required' => TRUE,
+    '#default_value' => IIT_GH_PRIMARY_MENU_SERVICE_URL,
+  );
+
+  $form['iit_global_header_secondary_menu_service_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('IIT Global Header Secondary Menu JSON Service URL'),
+    '#size' => 100,
+    '#description' => t('Full URL to server that provides the secondary menu JSON data. This URL should be provided by the Drupal Services module and the Services Menu module.'),
+    '#required' => TRUE,
+    '#default_value' => IIT_GH_SECONDARY_MENU_SERVICE_URL,
+  );
+
+  return system_settings_form($form);
 }
 
 /**
@@ -43,10 +105,54 @@ function iit_global_header_block_view($delta = '') {
 
   switch ($delta) {
     case 'iit_global_header':
-      $block['subject'] = t('IIT Global Header');
-      $block['content'] = t('<h1>Header not implemented yet!</h1>');
+      if (user_access('access content')) {
+        //$block['subject'] = t('IIT Global Header');
+        $block['content'] = iit_global_header_build_contents();
+      }
       break;
   }
 
   return $block;
 }
+
+
+
+/**
+ * Primary IIT Global Header Build Content Function
+ *
+ * Returns the HTML block content for the IIT Global Header block.
+ * Uses the JSON menu services specified in module configuration or defaults.
+ *
+ * @return
+ *   A String of HTML formatted content for the block content variable.
+ */
+function iit_global_header_build_contents() {
+  $html_output = '';
+
+  //Get JSON data from service for menus and decode to variables
+  $primary_menu_contents = json_decode(utf8_encode(file_get_contents(variable_get('iit_global_header_primary_menu_service_url', IIT_GH_PRIMARY_MENU_SERVICE_URL))), TRUE);
+  $secondary_menu_contents = json_decode(utf8_encode(file_get_contents(variable_get('iit_global_header_secondary_menu_service_url', IIT_GH_SECONDARY_MENU_SERVICE_URL))), TRUE);
+
+  // Start Main Wrapper
+  $html_output .= '<div id="iit-gh-wrapper">';
+
+  //Build Content
+  $html_output .= '<h1>Header not implemented yet! REVISED</h1>';
+
+  // Close Main Wrapper
+  $html_output .= '</div><!-- end #iit-gh-wrapper -->';
+
+  return $html_output;
+}
+
+
+
+
+
+
+
+
+
+
+
+
