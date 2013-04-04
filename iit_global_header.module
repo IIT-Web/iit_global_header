@@ -2,11 +2,16 @@
 
 /**
 * @file
-* Provides IIT Global Header block
+* Provides IIT Global Header block from JSON menu service
 */
 
 define('IIT_GH_PRIMARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/test/menu/menu-iit-global-menu.json');
 define('IIT_GH_SECONDARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/test/menu/menu-iit-global-secondary-menu.json');
+
+
+/* ***************************************** */
+/* Hook Implementations                      */
+/* ***************************************** */
 
 /**
  * Implements hook_help.
@@ -21,7 +26,7 @@ define('IIT_GH_SECONDARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/test/men
 function iit_global_header_help($path, $arg) {
   switch ($path) {
     case 'admin/help#iit_global_header':
-      return '<p>' . t('Provides an IIT Global Header block for use in IIT sites. This block pulls info from a menu service located in the main IIT install. The URL of the menu service and other options can be set in the configuration page.') . '</p>';
+      return '<p>' . t('Provides an IIT Global Header block for use in IIT sites. This block pulls info from a JSON Rest service located in the main IIT install. The URL of the menu service and other options can be set in the configuration page. This module requires the Drupal install providing the menu service to use the Drupal Services module and Menu Services module to provide the web service.') . '</p>';
       break;
   }
 }
@@ -58,34 +63,6 @@ function iit_global_header_menu() {
 }
 
 /**
- * Form builder; Create and display the IIT Global Header configuration settings form.
- */
-function iit_global_header_config_form($form, &$form_state) {
-  $form = array();
-
-  // Text field for URL path to menu service
-  $form['iit_global_header_primary_menu_service_url'] = array(
-    '#type' => 'textfield',
-    '#title' => t('IIT Global Header Primary Menu JSON Service URL'),
-    '#size' => 100,
-    '#description' => t('Full URL to server that provides the primary menu JSON data. This URL should be provided by the Drupal Services module and the Services Menu module.'),
-    '#required' => TRUE,
-    '#default_value' => IIT_GH_PRIMARY_MENU_SERVICE_URL,
-  );
-
-  $form['iit_global_header_secondary_menu_service_url'] = array(
-    '#type' => 'textfield',
-    '#title' => t('IIT Global Header Secondary Menu JSON Service URL'),
-    '#size' => 100,
-    '#description' => t('Full URL to server that provides the secondary menu JSON data. This URL should be provided by the Drupal Services module and the Services Menu module.'),
-    '#required' => TRUE,
-    '#default_value' => IIT_GH_SECONDARY_MENU_SERVICE_URL,
-  );
-
-  return system_settings_form($form);
-}
-
-/**
  * Implements hook_block_info().
  */
 function iit_global_header_block_info() {
@@ -116,6 +93,42 @@ function iit_global_header_block_view($delta = '') {
 }
 
 
+/* ***************************************** */
+/* Form Builders                             */
+/* ***************************************** */
+
+/**
+ * Form builder; Create and display the IIT Global Header configuration settings form.
+ */
+function iit_global_header_config_form($form, &$form_state) {
+  $form = array();
+
+  // Text field for URL path to menu service
+  $form['iit_global_header_primary_menu_service_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('IIT Global Header Primary Menu JSON Service URL'),
+    '#size' => 100,
+    '#description' => t('Full URL to server that provides the primary menu JSON data. This URL should be provided by the Drupal Services module and the Services Menu module.'),
+    '#required' => TRUE,
+    '#default_value' => IIT_GH_PRIMARY_MENU_SERVICE_URL,
+  );
+
+  $form['iit_global_header_secondary_menu_service_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('IIT Global Header Secondary Menu JSON Service URL'),
+    '#size' => 100,
+    '#description' => t('Full URL to server that provides the secondary menu JSON data. This URL should be provided by the Drupal Services module and the Services Menu module.'),
+    '#required' => TRUE,
+    '#default_value' => IIT_GH_SECONDARY_MENU_SERVICE_URL,
+  );
+
+  return system_settings_form($form);
+}
+
+
+/* ***************************************** */
+/* API FUNCTIONS                             */
+/* ***************************************** */
 
 /**
  * Primary IIT Global Header Build Content Function
