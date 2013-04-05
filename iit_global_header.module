@@ -145,15 +145,77 @@ function iit_global_header_build_contents() {
   //Get JSON data from service for menus and decode to variables
   $primary_menu_contents = json_decode(utf8_encode(file_get_contents(variable_get('iit_global_header_primary_menu_service_url', IIT_GH_PRIMARY_MENU_SERVICE_URL))), TRUE);
   $secondary_menu_contents = json_decode(utf8_encode(file_get_contents(variable_get('iit_global_header_secondary_menu_service_url', IIT_GH_SECONDARY_MENU_SERVICE_URL))), TRUE);
+  $primary_menu_items = $primary_menu_contents['tree'];
+  $secondary_menu_items = $secondary_menu_contents['tree'];
 
-  // Start Main Wrapper
+  // Start main wrapper
   $html_output .= '<div id="iit-gh-wrapper">';
 
-  //Build Content
-  $html_output .= '<h1>Header not implemented yet! REVISED</h1>';
+  // Build header element content
+  $html_output .= '<div id="iit-gh-header-wrapper">';
+  $html_output .= '<div id="iit-gh-header-container" class="container clearfix">';
+  $html_output .= iit_global_header_build_header($primary_menu_items, $secondary_menu_items);
+  $html_output .= '</div><!-- end #iit-gh-header-container -->';
+  $html_output .= '</div><!-- end #iit-gh-header-wrapper -->';
 
-  // Close Main Wrapper
+  // Build menu area content
+  $html_output .= '<div id="iit-gh-menu-wrapper">';
+  $html_output .= '<div id="iit-gh-menu-container" class="container clearfix">';
+  $html_output .= iit_global_header_build_menu($primary_menu_items);
+  $html_output .= '</div><!-- end #iit-gh-menu-container -->';
+  $html_output .= '</div><!-- end #iit-gh-menu-wrapper -->';
+
+  // Close main wrapper
   $html_output .= '</div><!-- end #iit-gh-wrapper -->';
+
+  return $html_output;
+}
+
+/**
+ * IIT Global Header Build Header Content Function
+ *
+ * Returns the HTML content for the IIT Global Header header section.
+ * For use inside the iit_global_header_build_contents function.
+ *
+ * @param primary_menu_items
+ *  Associative array of primary menu items.
+ *
+ * @param secondary_menu_items
+ *  Associative array of secondary menu items.
+ *
+ * @return
+ *   A String of HTML formatted content for the header element.
+ */
+function iit_global_header_build_header($primary_menu_items, $secondary_menu_items) {
+  $html_output = '';
+
+  // Start header element wrapper
+  $html_output .= '<header id="iit-gh-header">';
+
+  // Build content
+  $html_output .= '<h1>Header not implemented yet! REVISED</h1>';
+  $html_output .= '<a href="http://www.iit.edu/">Illinois Institute of Technology</a>';
+
+  // End header element wrapper
+  $html_output .= '</header><!-- end #iit-gh-header -->';
+
+  return $html_output;
+}
+
+/**
+ * IIT Global Header Build Menu Content Function
+ *
+ * Returns the HTML content for the IIT Global Header menu section.
+ * For use inside the iit_global_header_build_contents function.
+ *
+ * @param primary_menu_items
+ *  Associative array of primary menu items.
+ *
+ * @return
+ *   A String of HTML formatted content for the menu element.
+ */
+function iit_global_header_build_menu($primary_menu_items) {
+  $html_output = '';
 
   return $html_output;
 }
