@@ -68,6 +68,7 @@ function iit_global_header_menu() {
 function iit_global_header_block_info() {
   $blocks['iit_global_header'] = array(
     'info' => t('IIT Global Header'),
+    'cache' => DRUPAL_CACHE_CUSTOM,
   );
   return $blocks;
 }
@@ -78,6 +79,13 @@ function iit_global_header_block_info() {
  * Prepares the contents of the block.
  */
 function iit_global_header_block_view($delta = '') {
+  // Get block contents from cache if possible.
+  $cache = cache_get($delta, 'cache_block');
+  if (!empty($cache) && isset($cache->data) && !empty($cache->data)) {
+    return $cache->data;
+  }
+
+  // No cache, generate the block output.
   $block = array();
 
   switch ($delta) {
@@ -88,6 +96,9 @@ function iit_global_header_block_view($delta = '') {
       }
       break;
   }
+
+  // Set block contents in cache for 5 mins.
+  cache_set($delta, $block, 'cache_block', REQUEST_TIME + 300);
 
   return $block;
 }
