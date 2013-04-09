@@ -180,7 +180,7 @@ function iit_global_header_build_contents() {
   $html_output .= '</div><!-- end #iit-gh-header-wrapper -->';
 
   // Build menu area content
-  $html_output .= '<div id="iit-gh-menu-wrapper">';
+  $html_output .= '<div id="iit-gh-menu-wrapper" class="iit-gh-menu-wrapper-closed">';
   $html_output .= '<div id="iit-gh-menu-container" class="container clearfix">';
   $html_output .= iit_global_header_build_menu($primary_menu_items);
   $html_output .= '</div><!-- end #iit-gh-menu-container -->';
