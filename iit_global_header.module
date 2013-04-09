@@ -7,6 +7,7 @@
 
 define('IIT_GH_PRIMARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/v1/public/menu/menu-iit-global-menu.json');
 define('IIT_GH_SECONDARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/v1/public/menu/menu-iit-global-secondary-menu.json');
+define('IIT_GH_WEB_ROOT', 'http://web-dev.iit.edu/');
 
 
 /* ***************************************** */
@@ -121,7 +122,7 @@ function iit_global_header_config_form($form, &$form_state) {
     '#size' => 100,
     '#description' => t('Full URL to server that provides the primary menu JSON data. This URL should be provided by the Drupal Services module and the Services Menu module.'),
     '#required' => TRUE,
-    '#default_value' => IIT_GH_PRIMARY_MENU_SERVICE_URL,
+    '#default_value' => variable_get('iit_global_header_primary_menu_service_url', IIT_GH_PRIMARY_MENU_SERVICE_URL),
   );
 
   $form['iit_global_header_secondary_menu_service_url'] = array(
@@ -130,7 +131,16 @@ function iit_global_header_config_form($form, &$form_state) {
     '#size' => 100,
     '#description' => t('Full URL to server that provides the secondary menu JSON data. This URL should be provided by the Drupal Services module and the Services Menu module.'),
     '#required' => TRUE,
-    '#default_value' => IIT_GH_SECONDARY_MENU_SERVICE_URL,
+    '#default_value' => variable_get('iit_global_header_secondary_menu_service_url', IIT_GH_SECONDARY_MENU_SERVICE_URL),
+  );
+
+  $form['iit_global_header_web_root'] = array(
+    '#type' => 'textfield',
+    '#title' => t('IIT Global Header Web Root for Relative Paths'),
+    '#size' => 100,
+    '#description' => t('Full URL including protocol to the domain root for relative paths in the main navigation. These relative paths would be to pages in the main IIT web domain that were not put in the menu structure as fully qualified paths. Typical default for this would be http://web.iit.edu/ including the trailing slash.'),
+    '#required' => TRUE,
+    '#default_value' => variable_get('iit_global_header_web_root', IIT_GH_WEB_ROOT),
   );
 
   return system_settings_form($form);
@@ -198,19 +208,24 @@ function iit_global_header_build_contents() {
  *   A String of HTML formatted content for the header element.
  */
 function iit_global_header_build_header($primary_menu_items, $secondary_menu_items) {
-  $html_output = '';
+  $output = '';
 
   // Start header element wrapper
-  $html_output .= '<header id="iit-gh-header">';
+  $output .= '<header id="iit-gh-header">';
 
-  // Build content
-  $html_output .= '<h1>Header not implemented yet! REVISED</h1>';
-  $html_output .= '<a href="http://www.iit.edu/">Illinois Institute of Technology</a>';
+  // Build header content
+  $output .= '<a title="Illinois Institute of Technology" href="http://www.iit.edu">Illinois Institute of Technology</a>';
+  // Primary Nav
+  $output .= '<nav id="iit-gh-primary-nav">';
+
+  $output .= '</nav>';
+  // Secondary Nav
+  $output .= iit_global_header_print_secondary_nav($secondary_menu_items);
 
   // End header element wrapper
-  $html_output .= '</header><!-- end #iit-gh-header -->';
+  $output .= '</header><!-- end #iit-gh-header -->';
 
-  return $html_output;
+  return $output;
 }
 
 /**
@@ -226,19 +241,69 @@ function iit_global_header_build_header($primary_menu_items, $secondary_menu_ite
  *   A String of HTML formatted content for the menu element.
  */
 function iit_global_header_build_menu($primary_menu_items) {
-  $html_output = '';
+  $output = '';
 
-  return $html_output;
+  return $output;
 }
 
+/**
+ * IIT Global Header Print Secondary Nav Function
+ *
+ * Returns the HTML content for the IIT Global Header Secondary Nav.
+ * For use inside the iit_global_header_build_header function.
+ *
+ * @param secondary_menu_items
+ *  Associative array of secondary menu items.
+ *
+ * @return
+ *   A String of HTML formatted content for the nav element.
+ */
+function iit_global_header_print_secondary_nav($secondary_menu_items) {
+  $output = '';
+  $output .= '<nav id="iit-gh-secondary-nav">';
+  $output .= '<ul>';
 
+  foreach ($secondary_menu_items as $item) {
+    // If it is an internal page there will be a path_alias
+    if ($item['link']['external'] == '0') {
+      $href = variable_get('iit_global_header_web_root', IIT_GH_WEB_ROOT) . $item['link']['path_alias'];
+    } else {
+      $href = $item['link']['href'];
+    }
 
+    // Set variables from item array keys if they exist
+    $linkText = $item['link']['title'];
+    $title = ( array_key_exists('title', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['title'] : '';
+    $id = ( array_key_exists('id', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['id'] : '';
+    $name = ( array_key_exists('name', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['name'] : '';
+    $rel = ( array_key_exists('rel', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['rel'] : '';
+    $style = ( array_key_exists('style', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['style'] : '';
+    $target = ( array_key_exists('target', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['target'] : '';
 
+    // Class key is an array, create single space seperated string
+    $class = '';
+    if ( array_key_exists('class', $item['link']['localized_options']['attributes'])) {
+      $class .= implode(' ', $item['link']['localized_options']['attributes']['class']);
+    }
 
+    // Build attributes for link
+    $attr = '';
+    $attr .= (!empty($title)) ? 'title="' . $title . '" ' : '';
+    $attr .= (!empty($id)) ? 'id="' . $id . '" ' : '';
+    $attr .= (!empty($name)) ? 'name="' . $name . '" ' : '';
+    $attr .= (!empty($rel)) ? 'rel="' . $rel . '" ' : '';
+    $attr .= (!empty($style)) ? 'style="' . $style . '" ' : '';
+    $attr .= (!empty($target)) ? 'target="' . $target . '" ' : '';
+    $attr .= (!empty($class)) ? 'class="' . $class . '" ' : '';
 
+    // Output list item including link
+    $output .= '<li>';
+    $output .= '<a href="' . $href . '" ' . $attr . '>' . $linkText . '</a>';
+    $output .= '</li>';
+  }
 
-
-
-
-
+  $output .= '</ul>';
+  $output .= '</nav>';
+  return $output;
+}
 
