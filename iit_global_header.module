@@ -82,7 +82,7 @@ function iit_global_header_block_info() {
 function iit_global_header_block_view($delta = '') {
   // Get block contents from cache if possible.
   $cache = cache_get($delta, 'cache_block');
-  if (!empty($cache) && isset($cache->data) && !empty($cache->data)) {
+  if (!empty($cache) && isset($cache->data) && !empty($cache->data) && $cache->expire > REQUEST_TIME) {
     return $cache->data;
   }
 
