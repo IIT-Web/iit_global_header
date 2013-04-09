@@ -5,8 +5,8 @@
 * Provides IIT Global Header block from JSON menu service
 */
 
-define('IIT_GH_PRIMARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/test/menu/menu-iit-global-menu.json');
-define('IIT_GH_SECONDARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/test/menu/menu-iit-global-secondary-menu.json');
+define('IIT_GH_PRIMARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/v1/public/menu/menu-iit-global-menu.json');
+define('IIT_GH_SECONDARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/v1/public/menu/menu-iit-global-secondary-menu.json');
 
 
 /* ***************************************** */
