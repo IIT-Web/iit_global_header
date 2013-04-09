@@ -182,7 +182,7 @@ function iit_global_header_build_contents() {
   // Build menu area content
   $html_output .= '<div id="iit-gh-menu-wrapper" class="iit-gh-menu-wrapper-closed">';
   $html_output .= '<div id="iit-gh-menu-container" class="container clearfix">';
-  $html_output .= iit_global_header_build_menu($primary_menu_items);
+  $html_output .= iit_global_header_build_menus($primary_menu_items);
   $html_output .= '</div><!-- end #iit-gh-menu-container -->';
   $html_output .= '<div id="iit-gh-menu-exit" class="container">Close Menu</div>';
   $html_output .= '</div><!-- end #iit-gh-menu-wrapper -->';
@@ -228,7 +228,7 @@ function iit_global_header_build_header($primary_menu_items, $secondary_menu_ite
 }
 
 /**
- * IIT Global Header Build Menu Content Function
+ * IIT Global Header Build Menus Content Function
  *
  * Returns the HTML content for the IIT Global Header menu section.
  * For use inside the iit_global_header_build_contents function.
@@ -237,11 +237,20 @@ function iit_global_header_build_header($primary_menu_items, $secondary_menu_ite
  *  Associative array of primary menu items.
  *
  * @return
- *   A String of HTML formatted content for the menu element.
+ *   A String of HTML formatted content for the menu section.
  */
-function iit_global_header_build_menu($primary_menu_items) {
+function iit_global_header_build_menus($primary_menu_items) {
   $output = '';
 
+  foreach ($primary_menu_items as  $item) {
+    if ($item['link']['has_children'] == '1') {
+      $thisMenuId = 'iit-gh-menu-' . substr($item['link']['localized_options']['attributes']['id'], 11);
+      $output .= '<nav id="' . $thisMenuId . '">';
+      //print menu contents here
+      $output .= '</nav>';
+    }
+  }
+  
   return $output;
 }
 
