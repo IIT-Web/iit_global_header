@@ -344,41 +344,9 @@ function iit_global_header_print_secondary_nav($secondary_menu_items) {
   $output .= '<ul>';
 
   foreach ($secondary_menu_items as $item) {
-    // If it is an internal page there will be a path_alias
-    if ($item['link']['external'] == '0') {
-      $href = variable_get('iit_global_header_web_root', IIT_GH_WEB_ROOT) . $item['link']['path_alias'];
-    } else {
-      $href = $item['link']['href'];
-    }
-
-    // Set variables from item array keys if they exist
-    $linkText = $item['link']['title'];
-    $title = ( array_key_exists('title', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['title'] : '';
-    $id = ( array_key_exists('id', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['id'] : '';
-    $name = ( array_key_exists('name', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['name'] : '';
-    $rel = ( array_key_exists('rel', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['rel'] : '';
-    $style = ( array_key_exists('style', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['style'] : '';
-    $target = ( array_key_exists('target', $item['link']['localized_options']['attributes']) ) ? $item['link']['localized_options']['attributes']['target'] : '';
-
-    // Class key is an array, create single space seperated string
-    $class = '';
-    if ( array_key_exists('class', $item['link']['localized_options']['attributes'])) {
-      $class .= implode(' ', $item['link']['localized_options']['attributes']['class']);
-    }
-
-    // Build attributes for link
-    $attr = '';
-    $attr .= (!empty($title)) ? 'title="' . $title . '" ' : '';
-    $attr .= (!empty($id)) ? 'id="' . $id . '" ' : '';
-    $attr .= (!empty($name)) ? 'name="' . $name . '" ' : '';
-    $attr .= (!empty($rel)) ? 'rel="' . $rel . '" ' : '';
-    $attr .= (!empty($style)) ? 'style="' . $style . '" ' : '';
-    $attr .= (!empty($target)) ? 'target="' . $target . '" ' : '';
-    $attr .= (!empty($class)) ? 'class="' . $class . '" ' : '';
-
     // Output list item including link
     $output .= '<li>';
-    $output .= '<a href="' . $href . '" ' . $attr . '>' . $linkText . '</a>';
+    $output .= iit_global_header_print_anchor($item);
     $output .= '</li>';
   }
 
