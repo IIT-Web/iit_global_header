@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Install file for the iit_global_header module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function iit_global_header_uninstall() {
+  variable_del('iit_global_header_primary_menu_service_url');
+  variable_del('iit_global_header_secondary_menu_service_url');
+  variable_del('iit_global_header_web_root');
+}

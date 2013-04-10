@@ -8,3 +8,4 @@ configure = admin/config/content/iit_global_header
 version = 7.x-0.x-dev
 
 files[] = iit_global_header.module
+files[] = iit_global_header.install
