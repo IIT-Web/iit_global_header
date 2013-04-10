@@ -254,9 +254,7 @@ function iit_global_header_build_menus($primary_menu_items) {
   foreach ($primary_menu_items as  $item) {
     if ($item['link']['has_children'] == '1') {
       $thisMenuId = 'iit-gh-menu-' . substr($item['link']['localized_options']['attributes']['id'], 11);
-      $output .= '<nav id="' . $thisMenuId . '">';
-      //print menu contents here
-      $output .= '</nav>';
+      $output .= iit_global_header_print_menu_nav($item, $thisMenuId);
     }
   }
   
@@ -386,6 +384,187 @@ function iit_global_header_print_secondary_nav($secondary_menu_items) {
 
   $output .= '</ul>';
   $output .= '</nav>';
+  return $output;
+}
+
+/**
+ * IIT Global Header print menu nav function
+ *
+ * Returns the HTML content for the IIT Global Header menu nav element.
+ * This prints the HTML nav element that corresponds to a primary nav element.
+ *
+ * @param item
+ *  Associative array representing one primary nav item.
+ *
+ * @param id
+ *  String representing the value of the id attribute for the nav element.
+ *
+ * @return
+ *   A String of HTML formatted content for the nav element.
+ */
+function iit_global_header_print_menu_nav($item, $id) {
+  $output = '';
+
+  // Build menu nav for given primary nav item
+  $output .= '<nav id="' . $id . '">';
+  foreach ($item['children'] as $child) {
+    if ($child['link']['href'] == 'http://<menu-column>') {
+      $output .= iit_global_header_print_menu_column($child);
+    }
+  }
+  $output .= '</nav>';
+
+  return $output;
+}
+
+/**
+ * IIT Global Header print menu column function
+ *
+ * Returns the HTML content for an IIT Global Header menu column.
+ * This pulls class information for the Drupal menu configuration.
+ *
+ * @param column
+ *  Associative array representing one menu column.
+ *
+ * @return
+ *   A String of HTML formatted content for a menu column.
+ */
+function iit_global_header_print_menu_column($column) {
+  $output = '';
+
+  // Class key is an array need to flatten to space seperated list
+  $class = '';
+  if ( array_key_exists('class', $column['link']['localized_options']['attributes'])) {
+    $class .= implode(' ', $column['link']['localized_options']['attributes']['class']);
+  }
+
+  // Column wrapper
+  $output .= '<div class="' . $class . '">';
+
+  // Print column contents if it has children
+  if ($column['link']['has_children'] == '1') {
+    foreach ($column['children'] as $column_item) {
+      if ($column_item['link']['href'] == 'http://<menu-category>') {
+        // print as menu category
+        $output .= iit_global_header_print_menu_category($column_item);
+      } else {
+        // print as standalone link
+        $output .= iit_global_header_print_menu_link($column_item);
+      }
+    }
+  }
+
+  // Column close
+  $output .= '</div>';
+
+  return $output;
+}
+
+/**
+ * IIT Global Header print menu category function
+ *
+ * Returns the HTML content for an IIT Global Header menu category.
+ * A menu category is a h5 tag and ul wrapped in a div.
+ *
+ * @param category
+ *  Associative array representing one menu category.
+ *
+ * @return
+ *   A String of HTML formatted content for a menu category.
+ */
+function iit_global_header_print_menu_category($category){
+  $output = '';
+
+  $output .= '<div class="iit-gh-menu-category">';
+  $output .= '<h5>' . $category['link']['title'] . '</h5>';
+  $output .= '<ul>';
+  if ($category['link']['has_children'] == '1') {
+    foreach ($category['children'] as $category_link) {
+      $output .= '<li>';
+      $output .= iit_global_header_print_anchor($category_link);
+      $output .= '</li>';
+    }
+  }
+  $output .= '</ul>';
+  $output .= '</div>';
+
+  return $output;
+}
+
+/**
+ * IIT Global Header print menu link
+ *
+ * Returns the HTML content for an IIT Global Header standalone link.
+ * A standalone link is one that is not under a category label and
+ * is a anchor tag wrapped in a div.
+ *
+ * @param link
+ *  Associative array representing one link element.
+ *
+ * @return
+ *   A String of HTML formatted content for a menu standalone link.
+ */
+function iit_global_header_print_menu_link($link){
+  $output = '';
+
+  $output .= '<div class="iit-gh-menu-singlelink">';
+  $output .= iit_global_header_print_anchor($link);
+  $output .= '</div>';
+
+  return $output;
+}
+
+/**
+ * IIT Global Header print anchor function
+ *
+ * Returns the HTML content for an IIT Global Header anchor tag.
+ * The returned anchor tag will have all the attributes that were
+ * assigned in the Drupal menu administration page.
+ *
+ * @param link
+ *  Associative array representing one link element.
+ *
+ * @return
+ *   A String of HTML formatted content for a anchor tag.
+ */
+function iit_global_header_print_anchor($link) {
+  $output = '';
+
+  // If it is an internal page there will be a path_alias
+  if ($link['link']['external'] == '0') {
+    $href = IIT_GH_WEB_ROOT . $link['link']['path_alias'];
+  } else {
+    $href = $link['link']['href'];
+  }
+
+  // Set variables from link array keys
+  $linkText = $link['link']['title'];
+  $title = ( array_key_exists('title', $link['link']['localized_options']['attributes']) ) ? $link['link']['localized_options']['attributes']['title'] : '';
+  $id = ( array_key_exists('id', $link['link']['localized_options']['attributes']) ) ? $link['link']['localized_options']['attributes']['id'] : '';
+  $name = ( array_key_exists('name', $link['link']['localized_options']['attributes']) ) ? $link['link']['localized_options']['attributes']['name'] : '';
+  $rel = ( array_key_exists('rel', $link['link']['localized_options']['attributes']) ) ? $link['link']['localized_options']['attributes']['rel'] : '';
+  $style = ( array_key_exists('style', $link['link']['localized_options']['attributes']) ) ? $link['link']['localized_options']['attributes']['style'] : '';
+  $target = ( array_key_exists('target', $link['link']['localized_options']['attributes']) ) ? $link['link']['localized_options']['attributes']['target'] : '';
+
+  // Class key is an array need to flatten to space seperated list
+  $class = '';
+  if ( array_key_exists('class', $link['link']['localized_options']['attributes'])) {
+    $class .= implode(' ', $link['link']['localized_options']['attributes']['class']);
+  }
+
+  // Build link attributes
+  $attr = '';
+  $attr .= (!empty($title)) ? 'title="' . $title . '" ' : '';
+  $attr .= (!empty($id)) ? 'id="' . $id . '" ' : '';
+  $attr .= (!empty($name)) ? 'name="' . $name . '" ' : '';
+  $attr .= (!empty($rel)) ? 'rel="' . $rel . '" ' : '';
+  $attr .= (!empty($style)) ? 'style="' . $style . '" ' : '';
+  $attr .= (!empty($target)) ? 'target="' . $target . '" ' : '';
+  $attr .= (!empty($class)) ? 'class="' . $class . '" ' : '';
+
+  // Output link tag
+  $output .= '<a href="' . $href . '" ' . $attr . '>' . $linkText . '</a>';
+
   return $output;
 }
 
