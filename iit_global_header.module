@@ -401,7 +401,7 @@ function iit_global_header_print_menu_column($column) {
   $output = '';
 
   // Class key is an array need to flatten to space seperated list
-  $class = '';
+  $class = 'iit-gh-menu-column ';
   if ( array_key_exists('class', $column['link']['localized_options']['attributes'])) {
     $class .= implode(' ', $column['link']['localized_options']['attributes']['class']);
   }
