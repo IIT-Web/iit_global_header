@@ -2,12 +2,14 @@
 
 /**
 * @file
-* Provides IIT Global Header block from JSON menu service
+* Provides IIT Global Header block with menu data provided from JSON menu service located in main install.
 */
 
 define('IIT_GH_PRIMARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/v1/public/menu/menu-iit-global-menu.json');
 define('IIT_GH_SECONDARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/v1/public/menu/menu-iit-global-secondary-menu.json');
 define('IIT_GH_WEB_ROOT', 'http://web-dev.iit.edu/');
+// Cache Time in Seconds
+define('IIT_GH_CACHE_INTERVAL', 200);
 
 
 /* ***************************************** */
@@ -98,8 +100,8 @@ function iit_global_header_block_view($delta = '') {
       break;
   }
 
-  // Set block contents in cache for 5 mins.
-  cache_set($delta, $block, 'cache_block', REQUEST_TIME + 300);
+  // Set block contents in cache.
+  cache_set($delta, $block, 'cache_block', REQUEST_TIME + IIT_GH_CACHE_INTERVAL);
 
   return $block;
 }
