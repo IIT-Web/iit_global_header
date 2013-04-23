@@ -374,12 +374,13 @@ function iit_global_header_print_secondary_nav($secondary_menu_items) {
  */
 function iit_global_header_print_menu_nav($item, $id) {
   $output = '';
-
+  $column_counter = 0;
   // Build menu nav for given primary nav item
   $output .= '<nav id="' . $id . '">';
   foreach ($item['children'] as $child) {
     if ($child['link']['href'] == 'http://<menu-column>') {
-      $output .= iit_global_header_print_menu_column($child);
+      $column_counter++;
+      $output .= iit_global_header_print_menu_column($child, $column_counter);
     }
   }
   $output .= '</nav>';
@@ -399,11 +400,11 @@ function iit_global_header_print_menu_nav($item, $id) {
  * @return
  *   A String of HTML formatted content for a menu column.
  */
-function iit_global_header_print_menu_column($column) {
+function iit_global_header_print_menu_column($column, $number) {
   $output = '';
 
   // Class key is an array need to flatten to space seperated list
-  $class = 'iit-gh-menu-column ';
+  $class = 'iit-gh-menu-column iit-gh-menu-column-' . $number . ' ';
   if ( array_key_exists('class', $column['link']['localized_options']['attributes'])) {
     $class .= implode(' ', $column['link']['localized_options']['attributes']['class']);
   }
