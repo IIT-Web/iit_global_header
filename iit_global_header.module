@@ -165,18 +165,18 @@ function iit_global_header_config_form($form, &$form_state) {
 function iit_global_header_build_contents() {
   $html_output = '';
 
-  // Get JSON data from service for menus and suppress warnings
-  $primary_menu_json = @file_get_contents(variable_get('iit_global_header_primary_menu_service_url', IIT_GH_PRIMARY_MENU_SERVICE_URL));
-  $secondary_menu_json = @file_get_contents(variable_get('iit_global_header_secondary_menu_service_url', IIT_GH_SECONDARY_MENU_SERVICE_URL));
+  // Get JSON data from service for menus using Drupals drupal_http_request function
+  $primary_menu_response = drupal_http_request(variable_get('iit_global_header_primary_menu_service_url', IIT_GH_PRIMARY_MENU_SERVICE_URL));
+  $secondary_menu_response = drupal_http_request(variable_get('iit_global_header_secondary_menu_service_url', IIT_GH_SECONDARY_MENU_SERVICE_URL));
 
-  // If any errors getting JSON for service return empty html_output
-  if ($primary_menu_json === false || $secondary_menu_json === false) {
+  if ($primary_menu_response->code != 200 || $secondary_menu_response->code != 200) {
+    // Return empty string if there is an error
     return $html_output;
   }
 
-  // Decode JSON data to associative array
-  $primary_menu_contents = json_decode(utf8_encode($primary_menu_json), TRUE);
-  $secondary_menu_contents = json_decode(utf8_encode($secondary_menu_json), TRUE);
+  // Decode JSON data response to associative array
+  $primary_menu_contents = json_decode(utf8_encode($primary_menu_response->data), TRUE);
+  $secondary_menu_contents = json_decode(utf8_encode($secondary_menu_response->data), TRUE);
   $primary_menu_items = $primary_menu_contents['tree'];
   $secondary_menu_items = $secondary_menu_contents['tree'];
 
