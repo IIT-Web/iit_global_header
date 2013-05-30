@@ -184,10 +184,11 @@ function iit_global_header_build_contents() {
   $html_output .= '<div id="iit-gh-wrapper">';
 
   // Build header element content
-  $html_output .= '<div id="iit-gh-header-wrapper">';
-  $html_output .= '<div id="iit-gh-header-container" class="container clearfix">';
-  $html_output .= iit_global_header_build_header($primary_menu_items, $secondary_menu_items);
-  $html_output .= '</div><!-- end #iit-gh-header-container -->';
+  $html_output .= '<div id="iit-gh-header-wrapper" class="clearfix">';
+  $html_output .= iit_global_header_print_topbar();
+  $html_output .= iit_global_header_print_mobile_search();
+  $html_output .= iit_global_header_build_header($secondary_menu_items);
+  $html_output .= iit_global_header_print_primary_nav($primary_menu_items);
   $html_output .= '</div><!-- end #iit-gh-header-wrapper -->';
 
   // Build menu area content
@@ -196,6 +197,7 @@ function iit_global_header_build_contents() {
   $html_output .= iit_global_header_build_menus($primary_menu_items);
   $html_output .= '</div><!-- end #iit-gh-menu-container -->';
   $html_output .= '<div id="iit-gh-menu-exit" class="container">Close Menu</div>';
+  $html_output .= '<div id="iit-gh-query-check"></div>';
   $html_output .= '</div><!-- end #iit-gh-menu-wrapper -->';
 
   // Close main wrapper
@@ -219,16 +221,16 @@ function iit_global_header_build_contents() {
  * @return
  *   A String of HTML formatted content for the header element.
  */
-function iit_global_header_build_header($primary_menu_items, $secondary_menu_items) {
+function iit_global_header_build_header($secondary_menu_items) {
   $output = '';
 
   // Start header element wrapper
-  $output .= '<header id="iit-gh-header">';
+  $output .= '<header id="iit-gh-header" class="container clearfix">';
 
   // Build header content
-  $output .= '<a title="Illinois Institute of Technology" href="http://www.iit.edu">Illinois Institute of Technology</a>';
-  // Primary Nav
-  $output .= iit_global_header_print_primary_nav($primary_menu_items);
+  $output .= '<a id="iit-gh-header-branding" title="Illinois Institute of Technology" href="http://www.iit.edu">Illinois Institute of Technology</a>';
+  $output .= '<a id="iit-gh-header-triangle" title="Illinois Institute of Technology" href="http://www.iit.edu">IIT Logo</a>';
+
   // Secondary Nav
   $output .= iit_global_header_print_secondary_nav($secondary_menu_items);
 
@@ -277,7 +279,7 @@ function iit_global_header_build_menus($primary_menu_items) {
  */
 function iit_global_header_print_primary_nav($primary_menu_items) {
   $output = '';
-  $output .= '<nav id="iit-gh-primary-nav">';
+  $output .= '<nav id="iit-gh-primary-nav" class="clearfix">';
   $output .= '<ul>';
 
   foreach ($primary_menu_items as $item) {
@@ -376,7 +378,7 @@ function iit_global_header_print_menu_nav($item, $id) {
   $output = '';
   $column_counter = 0;
   // Build menu nav for given primary nav item
-  $output .= '<nav id="' . $id . '">';
+  $output .= '<nav id="' . $id . '" class="clearfix">';
   foreach ($item['children'] as $child) {
     if ($child['link']['href'] == 'http://<menu-column>') {
       $column_counter++;
@@ -538,4 +540,51 @@ function iit_global_header_print_anchor($link) {
 
   return $output;
 }
+
+/**
+ * IIT Global Header print topbar
+ *
+ * Returns the HTML content for an IIT Global Header topbar.
+ *
+ * @return
+ *   A String of HTML formatted content for header topbar.
+ */
+function iit_global_header_print_topbar(){
+  $output = '';
+
+  $output .= '<div id="iit-gh-topbar">';
+  $output .= '<a title="Show Menu" id="iit-gh-header-topbar-menu">&#57349;</a>';
+  $output .= '<a title="Show Search" id="iit-gh-header-topbar-search">&#128269;</a>';
+  $output .= '<a title="Show Audiences" id="iit-gh-header-topbar-audiences">&#128100;</a>';
+  $output .= '</div>';
+
+  return $output;
+}
+
+/**
+ * IIT Global Header print mobile search
+ *
+ * Returns the HTML content for the IIT Global Header mobile search form.
+ *
+ * @return
+ *   A String of HTML formatted content for header mobile search form.
+ */
+function iit_global_header_print_mobile_search(){
+  $output = '';
+
+  $output .= '<div id="iit-gh-mobile-search">';
+  $output .= '<form>';
+  $output .= '<label for="iit-gh-msearch-query" class="screen-reader-text">Search IIT</label>';
+  $output .= '<input id="iit-gh-msearch-query" type="search" placeholder="Search IIT">';
+  $output .= '<input id="iit-gh-msearch-submit" type="submit" value="Search IIT">';
+  $output .= '</form></div>';
+
+  return $output;
+}
+
+
+
+
+
+
 
