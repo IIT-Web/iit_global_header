@@ -9,3 +9,6 @@ version = 7.x-0.x-dev
 
 files[] = iit_global_header.module
 files[] = iit_global_header.install
+
+stylesheets[all][] = styles/iit-gh.css
+scripts[] = scripts/iit-gh.js
