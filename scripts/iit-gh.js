@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
     
     $('#iit-gh-mobile-search').css('display', 'none');
     
-    if (mediaQueryIndex === 0) {
+    if (mediaQueryIndex <= 1) {
         $('#iit-gh-primary-nav').css('display', 'none');
     }
 
@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
      * Primary Nav Click Handler
      * ======================================= */
     $('#iit-gh-primary-nav a').click(function(event) {
-        if (mediaQueryIndex > 0) {
+        if (mediaQueryIndex > 1) {
             if (!$(this).hasClass('iit-gh-primary-nav-nochild')) {
                 event.preventDefault();
 
@@ -149,7 +149,7 @@ jQuery(document).ready(function($) {
     $(window).resize(function(){
         mediaQueryIndex = parseInt($queryCheckDiv.css('z-index'));
 
-        if (mediaQueryIndex === 0) {
+        if (mediaQueryIndex <= 1) {
             $('#iit-gh-primary-nav').css('display', 'none');
         } else {
             $('#iit-gh-primary-nav').css('display', 'block');
