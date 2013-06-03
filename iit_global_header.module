@@ -553,9 +553,9 @@ function iit_global_header_print_topbar(){
   $output = '';
 
   $output .= '<div id="iit-gh-topbar">';
-  $output .= '<a title="Show Menu" id="iit-gh-header-topbar-menu">&#57349;</a>';
-  $output .= '<a title="Show Search" id="iit-gh-header-topbar-search">&#128269;</a>';
-  $output .= '<a title="Show Audiences" id="iit-gh-header-topbar-audiences">&#128100;</a>';
+  $output .= '<a title="Show Menu" id="iit-gh-header-topbar-menu">Menu</a>';
+  $output .= '<a title="Show Search" id="iit-gh-header-topbar-search">Search</a>';
+  $output .= '<a title="Show Audiences" id="iit-gh-header-topbar-audiences">Audiences</a>';
   $output .= '</div>';
 
   return $output;

@@ -1,6 +1,7 @@
 /* =============================================================================
  *   IIT Global Header - Global Styles
  * ========================================================================== */
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,300italic,400italic,600italic,700italic,800italic|Open+Sans+Condensed:300,300italic,700);
 
 @font-face {
@@ -896,20 +897,14 @@ div.iit-gh-menu-singlelink a {
 
 #iit-gh-topbar a#iit-gh-header-topbar-audiences {
     background: url('../images/top-bar-img.png') no-repeat 0 0;
-    background: url('../images/top-bar-img@2x.png') no-repeat 0 0;
-    background-size: 96px 32px;
 }
 
 #iit-gh-topbar a#iit-gh-header-topbar-menu {
     background: url('../images/top-bar-img.png') no-repeat -64px 0;
-    background: url('../images/top-bar-img@2x.png') no-repeat -64px 0;
-    background-size: 96px 32px;
 }
 
 #iit-gh-topbar a#iit-gh-header-topbar-search {
     background: url('../images/top-bar-img.png') no-repeat -32px 0;
-    background: url('../images/top-bar-img@2x.png') no-repeat -32px 0;
-    background-size: 96px 32px;
 }
 
 /* ----- Mobile Search Field ----- */
