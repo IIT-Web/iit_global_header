@@ -135,12 +135,19 @@ jQuery(document).ready(function($) {
     /* ==========================================
      * Mobile Secondary Nav Overlay Click Handler
      * ======================================= */
-    $('#iit-gh-secondary-nav-overlay').mousedown(function(event) {
+    $('#iit-gh-secondary-nav-overlay').mousedown(function(e) {
         $('#iit-gh-secondary-nav').animate({left:"-100%"}, function() {
             $('#iit-gh-secondary-nav').css('display', 'none');
         });
         $('#iit-gh-secondary-nav-overlay').css('display', 'none');
-    }); // end Top Bar Menu Click Handler
+    });
+    document.getElementById('iit-gh-secondary-nav-overlay').addEventListener('touchend', function(e) {
+        $('#iit-gh-secondary-nav').animate({left:"-100%"}, function() {
+            $('#iit-gh-secondary-nav').css('display', 'none');
+        });
+        $('#iit-gh-secondary-nav-overlay').css('display', 'none');
+    }, false);
+    // end Mobile Secondary Nav Overlay Click Handler
 
 
     /* ==========================================
