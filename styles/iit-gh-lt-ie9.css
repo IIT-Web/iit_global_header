@@ -1,0 +1,189 @@
+/*
+ * Target IE 6, 7 and 8 (less than IE9)
+ */
+
+/* =============================================================================
+ *   IIT Global Header - Header - lt ie9 specific rules
+ * ========================================================================== */
+
+#iit-gh-query-check {
+    z-index: 4;
+}
+
+/* ----- Layout ----- */
+#iit-gh-header {
+    position: relative;
+    min-width: 900px;
+}
+
+/* ----- Branding ----- */
+#iit-gh-header-branding {
+    margin: .95238em 0 .26190em .2em;
+    font-size: 2.625em;
+    float: left;
+}
+
+#iit-gh-header-triangle {
+    float: right;
+    margin: 3.3em .5em 0 0;
+    width: 48px;
+    height: 42px;
+    background-image: url('images/iit-gh/iit-triangle-48.png');
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+/* ----- Primary Nav ----- */
+#iit-gh-primary-nav {
+    width: 100%;
+    background-color: #666;
+}
+
+#iit-gh-primary-nav ul {
+    width: 100%;
+    max-width: 1140px;
+    min-width: 900px;
+    margin: 0 auto;
+}
+
+#iit-gh-primary-nav ul li {
+    float: left;
+}
+
+#iit-gh-primary-nav ul li a {
+    padding: .25em 1.15em .05em;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.250em;
+}
+
+#iit-gh-primary-nav ul li a:hover {
+    background-color: #777;
+}
+
+#iit-gh-primary-nav ul li a.iit-gh-nav-active {
+    background-color: #ddd;
+    color: #555;
+}
+
+/* ----- Secondary Nav ----- */
+#iit-gh-secondary-nav {
+    position: absolute;
+    top: .75em;
+    right: 0;
+}
+
+#iit-gh-secondary-nav ul li {
+    float: left;
+    margin: 0 .5em;
+}
+
+#iit-gh-secondary-nav ul li a {
+    font-size: .875em;
+    color: #444;
+}
+
+#iit-gh-secondary-nav ul li:before {
+    content: "|";
+    color: #555;
+    margin-right: .6em;
+}
+
+#iit-gh-secondary-nav ul li:first-child:before {
+    content: none;
+}
+
+/* end IIT Global Header - Header =========================================== */
+
+/* =============================================================================
+ *   IIT Global Header - Menus
+ * ========================================================================== */
+
+/* ----- Layout ----- */
+#iit-gh-menu-wrapper {
+    background-color: #ddd;
+}
+
+#iit-gh-menu-container {
+    overflow: hidden;
+    position: relative;
+    height: 23em;
+    display: none;
+    min-width: 900px;
+}
+
+#iit-gh-menu-wrapper nav {
+    margin-top: 1em;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+nav .iit-gh-menu-column {
+    float: left;
+}
+
+/* ----- Links ----- */
+#iit-gh-menu-wrapper nav a {
+    color: #333;
+}
+
+/* ----- Menu Grid ----- */
+nav .iit-gh-menu-grid-4 {
+    width: 23%;
+    margin: 0 1%;
+}
+
+/* ----- Menu Categories ----- */
+div.iit-gh-menu-category {
+    margin: 1.2em 0;
+}
+
+div.iit-gh-menu-category:first-child {
+    margin-top: 0;
+}
+
+div.iit-gh-menu-category h5 {
+    font-size: 1.125em;
+    text-transform: uppercase;
+    margin: 0 0 .25em 0;
+    color: #b00;
+    border-bottom: 1px solid #555;
+    padding: 0 0 .25em 0;
+    line-height: 1.25em;
+}
+
+div.iit-gh-menu-category ul {
+    font-family: 'Open Sans Condensed', sans-serif;
+    padding: 0;
+    margin: 0;
+    line-height: 1.1875em;
+}
+
+div.iit-gh-menu-category li {
+    margin-bottom: .4em;
+}
+
+/* ----- Menu Single Link ----- */
+div.iit-gh-menu-singlelink a {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+/* ----- Close Menu Bar ----- */
+#iit-gh-menu-exit {
+    background-color: #666;
+    max-width: inherit;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    font-size: .75em;
+    padding: .15em 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: none;
+}
+
+/* end IIT Global Header - Menus ============================================ */
