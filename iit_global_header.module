@@ -181,7 +181,7 @@ function iit_global_header_build_contents() {
   $secondary_menu_items = $secondary_menu_contents['tree'];
 
   // Start main wrapper
-  $html_output .= '<div id="iit-gh-wrapper">';
+  $html_output .= '<header id="iit-gh-wrapper">';
 
   // Build header element content
   $html_output .= '<div id="iit-gh-header-wrapper" class="clearfix">';
@@ -201,7 +201,7 @@ function iit_global_header_build_contents() {
   $html_output .= '</div><!-- end #iit-gh-menu-wrapper -->';
 
   // Close main wrapper
-  $html_output .= '</div><!-- end #iit-gh-wrapper -->';
+  $html_output .= '</header><!-- end #iit-gh-wrapper -->';
 
   return $html_output;
 }
@@ -224,8 +224,8 @@ function iit_global_header_build_contents() {
 function iit_global_header_build_header($secondary_menu_items) {
   $output = '';
 
-  // Start header element wrapper
-  $output .= '<header id="iit-gh-header" class="container clearfix">';
+  // Start header wrapper
+  $output .= '<div id="iit-gh-header" class="container clearfix">';
 
   // Build header content
   $output .= '<a id="iit-gh-header-branding" title="Illinois Institute of Technology" href="http://www.iit.edu">Illinois Institute of Technology</a>';
@@ -234,8 +234,8 @@ function iit_global_header_build_header($secondary_menu_items) {
   // Secondary Nav
   $output .= iit_global_header_print_secondary_nav($secondary_menu_items);
 
-  // End header element wrapper
-  $output .= '</header><!-- end #iit-gh-header -->';
+  // End header wrapper
+  $output .= '</div><!-- end #iit-gh-header -->';
 
   return $output;
 }
