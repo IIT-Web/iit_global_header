@@ -16,13 +16,6 @@
     min-width: 900px;
 }
 
-/* ----- Branding ----- */
-#iit-gh-header-branding {
-    margin: .95238em 0 .26190em .2em;
-    font-size: 2.625em;
-    float: left;
-}
-
 /* ----- Primary Nav ----- */
 #iit-gh-primary-nav {
     width: 100%;
@@ -41,11 +34,12 @@
 }
 
 #iit-gh-primary-nav ul li a {
-    padding: .25em 1.15em .05em;
+    padding: .2em 1.15em .05em;
     display: block;
     text-decoration: none;
     color: #fff;
     font-size: 1.250em;
+    line-height: 1.250em;
 }
 
 #iit-gh-primary-nav ul li a:hover {
@@ -60,8 +54,9 @@
 /* ----- Secondary Nav ----- */
 #iit-gh-secondary-nav {
     position: absolute;
-    top: .75em;
+    top: 0;
     right: 0;
+    font-size: .875em;
 }
 
 #iit-gh-secondary-nav ul li {
@@ -70,7 +65,6 @@
 }
 
 #iit-gh-secondary-nav ul li a {
-    font-size: .875em;
     color: #444;
 }
 
