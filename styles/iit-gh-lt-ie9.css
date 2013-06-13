@@ -23,16 +23,6 @@
     float: left;
 }
 
-#iit-gh-header-triangle {
-    float: right;
-    margin: 3.3em .5em 0 0;
-    width: 48px;
-    height: 42px;
-    background-image: url('images/iit-gh/iit-triangle-48.png');
-    text-indent: -9999px;
-    overflow: hidden;
-}
-
 /* ----- Primary Nav ----- */
 #iit-gh-primary-nav {
     width: 100%;

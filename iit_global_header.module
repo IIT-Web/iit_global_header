@@ -229,7 +229,6 @@ function iit_global_header_build_header($secondary_menu_items) {
 
   // Build header content
   $output .= '<a id="iit-gh-header-branding" title="Illinois Institute of Technology" href="http://www.iit.edu">Illinois Institute of Technology</a>';
-  $output .= '<a id="iit-gh-header-triangle" title="Illinois Institute of Technology" href="http://www.iit.edu">IIT Logo</a>';
 
   // Secondary Nav
   $output .= iit_global_header_print_secondary_nav($secondary_menu_items);

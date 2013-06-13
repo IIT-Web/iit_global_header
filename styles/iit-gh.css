@@ -1,9 +1,9 @@
 /* =============================================================================
  *   IIT Global Header - Global Styles
  * ========================================================================== */
-
+/**/
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,300italic,400italic,600italic,700italic,800italic|Open+Sans+Condensed:300,300italic,700);
-
+/**/
 @font-face {
     font-family: 'EconomicaBold-IIT-GH';
     src: url('Economica-Bold-OTF-webfont.eot');
@@ -105,16 +105,6 @@
     margin: .95238em 0 .26190em .2em;
     font-size: 2.625em;
     float: left;
-}
-
-#iit-gh-header-triangle {
-    float: right;
-    margin: 3.3em .5em 0 0;
-    width: 48px;
-    height: 42px;
-    background-image: url('../images/iit-triangle-48.png');
-    text-indent: -9999px;
-    overflow: hidden;
 }
 
 /* ----- Primary Nav ----- */
@@ -301,16 +291,6 @@ div.iit-gh-menu-singlelink a {
     float: left;
 }
 
-#iit-gh-header-triangle {
-    float: right;
-    margin: 3.3em .5em 0 0;
-    width: 48px;
-    height: 42px;
-    background-image: url('../images/iit-triangle-48.png');
-    text-indent: -9999px;
-    overflow: hidden;
-}
-
 /* ----- Primary Nav ----- */
 #iit-gh-primary-nav {
     width: 100%;
@@ -495,16 +475,6 @@ div.iit-gh-menu-singlelink a {
     margin: .95238em 0 .26190em .2em;
     font-size: 2.625em;
     float: left;
-}
-
-#iit-gh-header-triangle {
-    float: right;
-    margin: 3.3em .5em 0 0;
-    width: 48px;
-    height: 42px;
-    background-image: url('../images/iit-triangle-48.png');
-    text-indent: -9999px;
-    overflow: hidden;
 }
 
 /* ----- Primary Nav ----- */
@@ -785,10 +755,6 @@ div.iit-gh-menu-singlelink a {
     margin: .2em 0 0 0;
 }
 
-#iit-gh-header-triangle {
-    display: none;
-}
-
 /* ----- Primary Nav ----- */
 #iit-gh-primary-nav ul {
     background-color: #fff;
@@ -967,10 +933,6 @@ div.iit-gh-menu-singlelink a {
     margin: .2em 0 0 0;
 }
 
-#iit-gh-header-triangle {
-    display: none;
-}
-
 /* ----- Primary Nav ----- */
 #iit-gh-primary-nav ul {
     background-color: #fff;
@@ -1078,8 +1040,5 @@ div.iit-gh-menu-singlelink a {
 
 /* Tablet portrait, Tablet landscape, Standard layout - HiDPI */
 @media only screen and (min-width:600px) and (-webkit-min-device-pixel-ratio: 1.5) {
-    #iit-gh-header-triangle {
-        background-image: url('../images/iit-triangle-96.png');
-        background-size: 48px;
-    }
+
 }
