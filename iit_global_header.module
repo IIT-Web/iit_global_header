@@ -418,10 +418,14 @@ function iit_global_header_print_menu_column($column, $number) {
     foreach ($column['children'] as $column_item) {
       if ($column_item['link']['href'] == 'http://<menu-category>') {
         // print as menu category
-        $output .= iit_global_header_print_menu_category($column_item);
+        if ($column_item['link']['hidden'] == '0') {
+          $output .= iit_global_header_print_menu_category($column_item);
+        }
       } else {
         // print as standalone link
-        $output .= iit_global_header_print_menu_link($column_item);
+        if ($column_item['link']['hidden'] == '0') {
+          $output .= iit_global_header_print_menu_link($column_item);
+        }
       }
     }
   }
@@ -452,9 +456,11 @@ function iit_global_header_print_menu_category($category){
   $output .= '<ul>';
   if ($category['link']['has_children'] == '1') {
     foreach ($category['children'] as $category_link) {
-      $output .= '<li>';
-      $output .= iit_global_header_print_anchor($category_link);
-      $output .= '</li>';
+      if ($category_link['link']['hidden'] == '0') {
+        $output .= '<li>';
+        $output .= iit_global_header_print_anchor($category_link);
+        $output .= '</li>';
+      }
     }
   }
   $output .= '</ul>';
