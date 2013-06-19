@@ -741,6 +741,10 @@ div.iit-gh-menu-singlelink a {
 }
 
 /* ----- Primary Nav ----- */
+#iit-gh-primary-nav {
+    display: none;
+}
+
 #iit-gh-primary-nav ul {
     background-color: #fff;
     float: left;
@@ -920,6 +924,10 @@ div.iit-gh-menu-singlelink a {
 }
 
 /* ----- Primary Nav ----- */
+#iit-gh-primary-nav {
+    display: none;
+}
+
 #iit-gh-primary-nav ul {
     background-color: #fff;
     float: left;
