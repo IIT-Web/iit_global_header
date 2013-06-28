@@ -59,6 +59,10 @@
     text-transform: uppercase;
 }
 
+div.iit-gh-menu-category h5 {
+    font-weight: bold;
+}
+
 /* ----- Branding ----- */
 #iit-gh-header-branding {
     font-family: 'EconomicaBold-IIT-GH', sans-serif;
