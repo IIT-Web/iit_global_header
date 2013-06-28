@@ -57,6 +57,8 @@
     top: 0;
     right: 0;
     font-size: .875em;
+    background-color: #fff;
+    padding: 0 .2857142857em .2142857142em;
 }
 
 #iit-gh-secondary-nav ul li {
