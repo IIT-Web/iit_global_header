@@ -5,7 +5,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,300italic,400italic,600italic,700italic,800italic|Open+Sans+Condensed:300,300italic,700);
 /**/
 @font-face {
-    font-family: 'EconomicaBold-IIT-GH';
+    font-family: 'EconomicaBold-IIT';
     src: url('Economica-Bold-OTF-webfont.eot');
     src: url('Economica-Bold-OTF-webfont.eot?#iefix') format('embedded-opentype'),
          url('Economica-Bold-OTF-webfont.woff') format('woff'),
@@ -55,7 +55,7 @@
 }
 
 #iit-gh-primary-nav {
-    font-family: 'EconomicaBold-IIT-GH', sans-serif;
+    font-family: 'EconomicaBold-IIT', sans-serif;
     text-transform: uppercase;
 }
 
@@ -65,7 +65,7 @@ div.iit-gh-menu-category h5 {
 
 /* ----- Branding ----- */
 #iit-gh-header-branding {
-    font-family: 'EconomicaBold-IIT-GH', sans-serif;
+    font-family: 'EconomicaBold-IIT', sans-serif;
     text-decoration: none;
     color: #c00;
     margin: .638888889em 0 .055555556em .2777777778em;
