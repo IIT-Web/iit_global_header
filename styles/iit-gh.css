@@ -694,6 +694,7 @@ div.iit-gh-menu-singlelink a {
 }
 
 /* ----- Mobile Search Field ----- */
+/** /
 #iit-gh-mobile-search {
     display: block;
     position: relative;
@@ -739,6 +740,7 @@ div.iit-gh-menu-singlelink a {
     right: 8px;
     padding: 0;
 }
+/**/
 
 /* ----- Branding ----- */
 #iit-gh-header-branding {
@@ -877,6 +879,7 @@ div.iit-gh-menu-singlelink a {
 }
 
 /* ----- Mobile Search Field ----- */
+/** /
 #iit-gh-mobile-search {
     display: block;
     position: relative;
@@ -922,6 +925,7 @@ div.iit-gh-menu-singlelink a {
     right: 8px;
     padding: 0;
 }
+/**/
 
 /* ----- Branding ----- */
 #iit-gh-header-branding {
@@ -1020,10 +1024,12 @@ div.iit-gh-menu-singlelink a {
 
 /* Smartphone landscape, Smartphone portrait - HiDPI */
 @media only screen and (max-width:599px) and (-webkit-min-device-pixel-ratio: 1.5) {
+    /** /
     #iit-gh-mobile-search #iit-gh-msearch-submit {
         background-image: url("../images/search@2x.png");
         background-size: 16px 16px;
     }
+    /**/
 
     #iit-gh-topbar a#iit-gh-header-topbar-audiences {
         background: url('../images/top-bar-img@2x.png') no-repeat 0 0;

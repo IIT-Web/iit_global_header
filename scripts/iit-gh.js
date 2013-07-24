@@ -19,7 +19,9 @@ jQuery(document).ready(function($) {
      * ======================================= */
     $('body').append('<div id="iit-gh-secondary-nav-overlay"></div>');  
     
+    /** /
     $('#iit-gh-mobile-search').css('display', 'none');
+    /**/
     
     if (mediaQueryIndex <= 1) {
         $('#iit-gh-primary-nav').css('display', 'none');
@@ -109,6 +111,7 @@ jQuery(document).ready(function($) {
     /* ==========================================
      * Top Bar Search Click Handler
      * ======================================= */
+    /** /
     $('#iit-gh-header-topbar-search').click(function(event) {
         var $element = $('#iit-gh-mobile-search');
         if ($element.css('display') === 'none') {
@@ -117,6 +120,7 @@ jQuery(document).ready(function($) {
             $element.slideUp();
         }
     }); // end Top Bar Search Click Handler
+    /**/
 
 
     /* ==========================================

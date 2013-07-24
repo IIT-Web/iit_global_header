@@ -186,7 +186,7 @@ function iit_global_header_build_contents() {
   // Build header element content
   $html_output .= '<div id="iit-gh-header-wrapper" class="clearfix">';
   $html_output .= iit_global_header_print_topbar();
-  $html_output .= iit_global_header_print_mobile_search();
+  //$html_output .= iit_global_header_print_mobile_search();
   $html_output .= iit_global_header_build_header($secondary_menu_items);
   $html_output .= iit_global_header_print_primary_nav($primary_menu_items);
   $html_output .= '</div><!-- end #iit-gh-header-wrapper -->';
@@ -559,7 +559,7 @@ function iit_global_header_print_topbar(){
 
   $output .= '<div id="iit-gh-topbar">';
   $output .= '<a title="Show Menu" id="iit-gh-header-topbar-menu">Menu</a>';
-  $output .= '<a title="Show Search" id="iit-gh-header-topbar-search">Search</a>';
+  $output .= '<a href="http://web.iit.edu/search/" title="Show Search" id="iit-gh-header-topbar-search">Search</a>';
   $output .= '<a title="Show Audiences" id="iit-gh-header-topbar-audiences">Audiences</a>';
   $output .= '</div>';
 
