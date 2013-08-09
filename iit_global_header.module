@@ -5,11 +5,11 @@
 * Provides IIT Global Header block with menu data provided from JSON menu service located in main install.
 */
 
-define('IIT_GH_PRIMARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/v1/public/menu/menu-iit-global-menu.json');
-define('IIT_GH_SECONDARY_MENU_SERVICE_URL', 'http://web-dev.iit.edu/api/v1/public/menu/menu-iit-global-secondary-menu.json');
-define('IIT_GH_WEB_ROOT', 'http://web-dev.iit.edu/');
+define('IIT_GH_PRIMARY_MENU_SERVICE_URL', 'http://web.iit.edu/api/v1/public/menu/menu-iit-global-menu.json');
+define('IIT_GH_SECONDARY_MENU_SERVICE_URL', 'http://web.iit.edu/api/v1/public/menu/menu-iit-global-secondary-menu.json');
+define('IIT_GH_WEB_ROOT', 'http://web.iit.edu/');
 // Cache Time in Seconds
-define('IIT_GH_CACHE_INTERVAL', 28800);
+define('IIT_GH_CACHE_INTERVAL', 86400);
 
 
 /* ***************************************** */
