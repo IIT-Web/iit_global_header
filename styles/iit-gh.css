@@ -30,6 +30,10 @@
     font-size: 16px;
 }
 
+#iit-gh-wrapper ul {
+    font-size: 1em;
+}
+
 #iit-gh-wrapper h5 {
     font-family: 'Open Sans Condensed', sans-serif;
 }
