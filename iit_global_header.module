@@ -228,7 +228,7 @@ function iit_global_header_build_header($secondary_menu_items) {
   $output .= '<div id="iit-gh-header" class="container clearfix">';
 
   // Build header content
-  $output .= '<a id="iit-gh-header-branding" title="Illinois Institute of Technology" href="http://www.iit.edu">Illinois Institute of Technology</a>';
+  $output .= '<a id="iit-gh-header-branding" title="Illinois Institute of Technology" href="//web.iit.edu">Illinois Institute of Technology</a>';
 
   // Secondary Nav
   $output .= iit_global_header_print_secondary_nav($secondary_menu_items);
@@ -559,7 +559,7 @@ function iit_global_header_print_topbar(){
 
   $output .= '<div id="iit-gh-topbar">';
   $output .= '<a title="Show Menu" id="iit-gh-header-topbar-menu">Menu</a>';
-  $output .= '<a href="http://web.iit.edu/search/" title="Show Search" id="iit-gh-header-topbar-search">Search</a>';
+  $output .= '<a href="//web.iit.edu/search/" title="Show Search" id="iit-gh-header-topbar-search">Search</a>';
   $output .= '<a title="Show Audiences" id="iit-gh-header-topbar-audiences">Audiences</a>';
   $output .= '</div>';
 
